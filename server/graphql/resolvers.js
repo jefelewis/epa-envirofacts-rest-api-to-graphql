@@ -25,7 +25,7 @@ const RESOLVERS = {
     // Description: I would like to know, within a specific county and state, the violations and enforcement actions for the different PWSs, as well as the definitions, health effects, and sources of contamination for any contaminants.
     testFunction: (parent, args) => {
       let city = toUpperCase(args.city);
-      let state = toUpperCase(args.state);
+      let state = toUpperCase(args.stateAbbreviation);
 
       return axios.get(`https://iaspub.epa.gov/enviro/efservice/SDW_VIOL_ENFORCEMENT/COUNTYSERVED/${city}/STATE/${state}/JSON`)
       .then((response) => response.data)
@@ -53,12 +53,45 @@ const RESOLVERS = {
     // Description: I would like to know, for a specific city and state, the violations and enforcement actions, as well as the definitions, health effects, and sources of contamination for any contaminants.
     testFunction: (parent, args) => {
       let city = toUpperCase(args.city);
-      let state = toUpperCase(args.state);
+      let state = toUpperCase(args.stateAbbreviation);
 
       return axios.get(`https://iaspub.epa.gov/enviro/efservice/SDW_CONTAM_VIOL_CITY/geolocation_city/${city}/STATE/${state}/rows/1:10/JSON`)
       .then((response) => response.data)
       .catch((error) => console.log(error));
     },  
+
+
+
+    // Environmental Regulations
+    // Description: Will return all of the compliance records for ZIP Code 60085  
+    testFunction: (parent, args) => {
+      let zipCode = toUpperCase(args.zipCode);
+
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/t_compliance_echo/zip/${zipCode}/JSON`)
+      .then((response) => response.data)
+      .catch((error) => console.log(error));
+    },
+    // Environmental Regulations
+    // Description: return all of the compliance records for by City and State
+    testFunction: (parent, args) => {
+      let city = toUpperCase(args.city);
+      let state = toUpperCase(args.stateAbbreviation);
+
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/t_compliance_echo/city/${city}/state/${state}/JSON`)
+      .then((response) => response.data)
+      .catch((error) => console.log(error));
+    },  
+    // Environmental Regulations
+    // Description: return all of the compliance records whos current compliance records are listed as "serious violations(s)" in Washington, DC as a JSON output.
+    testFunction: (parent, args) => {
+      let city = toUpperCase(args.city);
+      let state = toUpperCase(args.stateAbbreviation);
+
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/t_compliance_echo/city/${city}/state/${state}/CURR_COMP_STATUS/serious%20violation(s)/JSON`)
+      .then((response) => response.data)
+      .catch((error) => console.log(error));
+    },  
+
 
 
 
