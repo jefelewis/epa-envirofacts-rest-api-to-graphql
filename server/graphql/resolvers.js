@@ -4,6 +4,7 @@ import axios from 'axios';
 // Imports: API Key
 import APIKEY from '/Users/jefflewis/Documents/Computer-Programming/Projects/Converted GraphQL REST APIs/epa-envirofacts-rest-api-to-graphql/config/config.js';
 
+const CSV = require('csvtojson');
 
 // GraphQL: Resolvers
 const RESOLVERS = {
@@ -44,15 +45,16 @@ const RESOLVERS = {
 
 
 
-    // Get Number of all TRI Facility Companies
-    getNumberOfAllTRIFacilities: async (parent, args) => {
-      return await axios.get(`https://iaspub.epa.gov/enviro/efservice/tri_facility/COUNT/JSON/`)
+    // Get Number of all TOXIC RELEASE INVENTORY (TRI) Facility Companies in the United States
+    getNumberOfAllToxicReleaseInventoryFacilities: (parent, args) => {
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/tri_facility/COUNT/JSON/`)
       .then((response) => response.data)
       .catch((error) => console.log(error))
     },
 
-    getNumberOfAllTRIFacilitiesByState: async (parent, args) => {
-      return await axios.get(`https://iaspub.epa.gov/enviro/efservice/tri_facility/state_abbr/${args.stateAbbreviation}/COUNT`)
+    // Get Number of all TOXIC RELEASE INVENTORY (TRI) Facility Companies by State
+    getNumberOfAllToxicReleaseInventoryFacilitiesByState: (parent, args) => {
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/tri_facility/state_abbr/${args.stateAbbreviation}/COUNT/CSV`)
       .then((response) => response.data)
       .catch((error) => console.log(error))
     },
@@ -225,7 +227,7 @@ const RESOLVERS = {
 
   // PCS_PERMIT_FACILITY
   // Descriptipn: returns the first 10000 records from PCS_PERMIT_FACILITY table where the MAJOR_DISCHARGE_INDICATOR = ‘M’.
-  getPCSPermitFacilities: (parent, args) => {
+  getPCSPermitFacilitiesWithMajorDischarge: (parent, args) => {
     return axios.get(`https://iaspub.epa.gov/enviro/efservice/pcs_permit_facility/major_discharge_indicator/M/JSON`)
     .then((response) => response.data)
     .catch((error) => console.log(error));

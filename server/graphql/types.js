@@ -7,6 +7,9 @@ const TYPEDEFS = `
     getToxicReleaseInventoryByCASNumber(casNumber: String): [Chemical]
     getToxicReleaseInventoryByChemical(chemical: String): [Chemical]
 
+    getNumberOfAllToxicReleaseInventoryFacilities: ToxicReleaseInventoryFacility
+    getNumberOfAllToxicReleaseInventoryFacilitiesByState(stateAbbreviation: String): ToxicReleaseInventoryFacility
+
     getAllPublicWaterSystemsByCounty(county: String): [PublicWaterSystem]
 
     getAllEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String city: String): [EnvironmentalRegulationComplianceRecord]
@@ -19,9 +22,11 @@ const TYPEDEFS = `
     getDailyUVIndexByZipCode(zipCode: String): [DailyUVIndex]
 
     getAllSaferChoiceLabeledProducts: [SaferChoiceLabeledProduct]
+
+    getPCSPermitFacilitiesWithMajorDischarge: PCSPermitFacility
   }
 
-   type Chemical {
+  type Chemical {
     CHEMICAL: String
     CAS_NUMBER: String
     HEALTH_EFFECTS_TEXT: String
@@ -44,9 +49,9 @@ const TYPEDEFS = `
     REPRODUCTIVE: String
     RESPIRATORY: String
     HEALTH_EFFECTS_SOURCE_TEXT: String
-   }
+  }
 
-   type PublicWaterSystem {
+  type PublicWaterSystem {
     PWSID: Int
     PWSNAME: String
     REGULATINGAGENCYNAME: String
@@ -55,11 +60,15 @@ const TYPEDEFS = `
     CONTACT: String
     CONTACTPHONE: String
     COUNTYSERVED: String
-   }
+  }
+
+  type ToxicReleaseInventoryFacility {
+    TOTALQUERYRESULTS: Int
+  }
 
 
 
-   type WaterViolation {
+  type WaterViolation {
     PWSID: String
     PWSNAME: String
     STATE: String
@@ -79,10 +88,10 @@ const TYPEDEFS = `
     ENFDATE: String
     COMPPERBEGINDATE: String
     COMPPERENDDATE: String
-   }
+  }
 
 
-   type ConcentratedAnimalFeedingOperations {
+  type ConcentratedAnimalFeedingOperations {
     ICIS_FACILITY_INTEREST_ID: Int
     PGM_SYS_ID: Int
     FACILITY_NAME: String
@@ -143,7 +152,7 @@ const TYPEDEFS = `
     CONTAINMENT_TYPE_OTHER: String
     STORAGE_TYPE_OTHER_CONTAINMENT: String
     CONTAINMENT_TYPE_DESC: String
-   }
+  }
 
 
 
@@ -161,7 +170,7 @@ const TYPEDEFS = `
 
 
 
-   type EnvironmentalRegulationComplianceRecord {
+  type EnvironmentalRegulationComplianceRecord {
     REGISTRY_ID: Int
     NAME: String
     ADDRESS: String
@@ -289,9 +298,9 @@ const TYPEDEFS = `
     MULTI_PERMIT_FLAG_RCR: String
     RCR_UNIVERSE: String
     TRI_RELEASES_LAND: String
-   }
+  }
 
-   type SaferChoiceLabeledProduct {
+  type SaferChoiceLabeledProduct {
     CATEGORY: String
     SECTOR: String
     UPCS: String
@@ -300,7 +309,7 @@ const TYPEDEFS = `
     CITY: String
     STATE: String
     PARTNERSINCE: Int
-   }
+  }
 
 
   type DailyUVIndex {
@@ -308,6 +317,8 @@ const TYPEDEFS = `
     UV_INDEX: [Int]
     UV_ALERT: [Int]
   }
+
+
 
 
 
