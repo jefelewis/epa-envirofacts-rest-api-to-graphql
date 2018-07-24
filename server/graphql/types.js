@@ -3,11 +3,23 @@ const TYPEDEFS = `
   type Query {
 
     getToxicReleaseInventoryHealthDescriptions: Chemical
-    getToxicReleaseInventoryByCASNumber(casNumber: String): Chemical
-    getToxicReleaseInventoryByChemical(chemical: String): Chemical
+    getAllChemicals: [Chemical]
+    getToxicReleaseInventoryByCASNumber(casNumber: String): [Chemical]
+    getToxicReleaseInventoryByChemical(chemical: String): [Chemical]
 
-    getEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String, city: String): EnvironmentalRegulationComplianceRecord
-   }
+    getAllPublicWaterSystemsByCounty(county: String): [PublicWaterSystem]
+
+    getAllEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String city: String): [EnvironmentalRegulationComplianceRecord]
+   
+  
+    getAllConcentratedAnimalFeedingOperationsFirst10000: [ConcentratedAnimalFeedingOperations]
+    getAllConcentratedAnimalFeedingOperationsByState(stateAbbreviation: String): [ConcentratedAnimalFeedingOperations]
+    getAllConcentratedAnimalFeedingOperationsByZipCode(zipCode: Int): [ConcentratedAnimalFeedingOperations]
+  
+    getDailyUVIndexByZipCode(zipCode: String): [DailyUVIndex]
+
+    getAllSaferChoiceLabeledProducts: [SaferChoiceLabeledProduct]
+  }
 
    type Chemical {
     CHEMICAL: String
@@ -33,6 +45,121 @@ const TYPEDEFS = `
     RESPIRATORY: String
     HEALTH_EFFECTS_SOURCE_TEXT: String
    }
+
+   type PublicWaterSystem {
+    PWSID: Int
+    PWSNAME: String
+    REGULATINGAGENCYNAME: String
+    STATE: String
+    POPULATIONSERVED: String
+    CONTACT: String
+    CONTACTPHONE: String
+    COUNTYSERVED: String
+   }
+
+
+
+   type WaterViolation {
+    PWSID: String
+    PWSNAME: String
+    STATE: String
+    COUNTYSERVED: String
+    GEOLOCATION_ZIP: Int
+    VIOID: Int
+    CCODE: Int
+    CNAME: String
+    SOURCES: String
+    CTYPE: String
+    VCODE: Int
+    VNAME: String
+    VTYPE: String
+    VIOLMEASURE: String
+    ENFACTIONTYPE: String
+    ENFACTIONNAME: String
+    ENFDATE: String
+    COMPPERBEGINDATE: String
+    COMPPERENDDATE: String
+   }
+
+
+   type ConcentratedAnimalFeedingOperations {
+    ICIS_FACILITY_INTEREST_ID: Int
+    PGM_SYS_ID: Int
+    FACILITY_NAME: String
+    LOCATION_ADDRESS: String
+    SUPPLEMENTAL_ADDRESS_TEXT: String
+    CITY: String
+    COUNTY_NAME: String
+    STATE_CODE: String
+    STATE_DESC: String
+    ZIP: Int
+    GEOCODE_LONGITUDE: Int
+    GEOCODE_LATITUDE: Int
+    NAICS_CODE: Int
+    NAICS_DESC: String
+    NAICS_PRIMARY_INDICATOR_FLAG: String
+    SIC_CODE: String
+    SIC_DESC: String
+    SIC_PRIMARY_INDICATOR_FLAG: String
+    ACTIVITY_ID: Int
+    CAFO_REASON_TEXT: String
+    CAFO_ANIMAL_FACILITY_FLAG: String
+    DESIGNATION_DATE: String
+    LEGAL_DESC: Int
+    PRODUCTION_AREA_SIZE: Int
+    NMBR_OF_ACRES_DRAINAGE: Int
+    LAND_AVAILABLE: Int
+    SOLID_MANURE_GENERATED_AMT: Int
+    SOLID_MANURE_TRANSFERRED_AMT: Int
+    LIQUID_MANURE_GENERATED_AMT: Int
+    LIQUID_MANURE_TRANSFERRED_AMT: Int
+    NMP_FLAG: String
+    NMP_DEVELOPED_DATE: String
+    NMP_LAST_UPDATED_DATE: String
+    EMS_FLAG: String
+    EMS_DEVELOPED_DATE: String
+    EMS_LAST_UPDATED_DATE: String
+    LIVESTOCK_MAX_CAPACITY: String
+    LIVESTOCK_DETERMIN_CAPACITY: String
+    LIVESTOCK_AUTHORIZED_CAPACITY: String
+    PERM_CAFO_ID: Int
+    CAFO_CLASSIFICATION_DESC: String
+    PERM_CAFO_ANIMAL_TYPE_ID: Int
+    ANIMAL_TYPE_OTHER: String
+    TOTAL_NMBR: Int
+    OPEN_CONFINEMENT_COUNT: Int
+    UNDER_ROOF_CONFINEMENT_COUNT: Int
+    ANIMAL_TYPE_DESC: String
+    PERM_CAFO_STORAGE_TYPE_ID: Int
+    STORAGE_TYPE_OTHER: String
+    DAYS_OF_STORAGE: Int
+    TOTAL_CAPACITY_MEASURE: Int
+    STORAGE_TYPE_DESC: String
+    PERM_CAFO_BMP_ID: Int
+    BMP_OTHER: String
+    BMP_DESC: String
+    PERM_CAFO_CONTAINMENT_ID: Int
+    CONTAINMENT_CAPACITY: Int
+    CONTAINMENT_TYPE_OTHER: String
+    STORAGE_TYPE_OTHER_CONTAINMENT: String
+    CONTAINMENT_TYPE_DESC: String
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    type EnvironmentalRegulationComplianceRecord {
     REGISTRY_ID: Int
@@ -163,6 +290,27 @@ const TYPEDEFS = `
     RCR_UNIVERSE: String
     TRI_RELEASES_LAND: String
    }
+
+   type SaferChoiceLabeledProduct {
+    CATEGORY: String
+    SECTOR: String
+    UPCS: String
+    PRODUCT_NAME: String
+    COMPANY_NAME: String
+    CITY: String
+    STATE: String
+    PARTNERSINCE: Int
+   }
+
+
+  type DailyUVIndex {
+    ZIP_CODE: [Int]
+    UV_INDEX: [Int]
+    UV_ALERT: [Int]
+  }
+
+
+
 `;
 
 
