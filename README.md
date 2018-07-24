@@ -14,7 +14,7 @@ If you'd like to contribute to this project, please fork this repository and sub
 *  [GraphQL Query Examples](#graphql-query-examples)
 
 ## About Operation Refactor America
-Operation Refactor America is a not associated with any governement agency, but our goal is to empower citizens with transparent data. Only a fraction of government agencies provide public APIs, which are usually poorly documented, built on archaic REST architecture, and contains scattered data. Our mission is to retreive that valuable data and convert them into an intuitive and modern API using GraphQL Server.
+Operation Refactor America is a not associated with any government agency, but our goal is to empower citizens with transparent data. Only a fraction of government agencies provide public APIs, which are usually poorly documented, built on archaic REST architecture, and contains scattered data. Our mission is to retrieve that valuable data and convert them into an intuitive and modern API using GraphQL Server.
 
 ## About the Data
 The data comes directly from the Environmental Protection Agency's REST API (Envirofacts). The REST endpoints have been mapped as GraphQL types and resolvers. A summary of endpoints and documentation can be found here: https://www3.epa.gov/enviro/
