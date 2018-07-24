@@ -11,21 +11,23 @@ const RESOLVERS = {
 
     // Toxic Release Inventory (TRI) Chemical Hazard Information Profiles
     // Description: Health Effect Descriptions
-    testFunction: (parent, args) => {
-      return axios.get(``)
+    getToxicReleaseInventoryHealthDescriptions: (parent, args) => {
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/HEALTH_EFFECT_DESCRIPTIONS/JSON/`)
       .then((response) => response.data)
       .catch((error) => console.log(error))
     },
     // Toxic Release Inventory (TRI) Chemical Hazard Information Profiles
     // Description: Health Effect Descriptions by CAS Number
-    testFunction: (parent, args) => {
-      return axios.get(``)
+    getToxicReleaseInventoryByCASNumber: (parent, args) => {
+      let cas = toUpperCase(args.casNumber)
+
+      return axios.get(`https://iaspub.epa.gov/enviro/efservice/HEALTH_EFFECT_DESCRIPTIONS/cas_number/=/${cas}/JSON`)
       .then((response) => response.data)
       .catch((error) => console.log(error))
     },
     // Toxic Release Inventory (TRI) Chemical Hazard Information Profiles
     // Description: Health Effect Descriptions by Chemical (Styrene)
-    testFunction: (parent, args) => {
+    getToxicReleaseInventoryByChemical: (parent, args) => {
       return axios.get(`https://iaspub.epa.gov/enviro/efservice/HEALTH_EFFECT_DESCRIPTIONS/chemical/=/${args.chemical}/JSON/`)
       .then((response) => response.data)
       .catch((error) => console.log(error))

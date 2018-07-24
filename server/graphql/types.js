@@ -1,7 +1,10 @@
 // GraphQL: TypeDefs
 const TYPEDEFS = `
   type Query {
-    getToxicReleaseInventoryByChemical(chemical: String): Chemical
+
+    getToxicReleaseInventoryHealthDescriptions: Chemical
+    getToxicReleaseInventoryByCASNumber(chemical: String): Chemical
+    getToxicReleaseInventoryByChemical(casNumber: String): Chemical
 
     getEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String, city: String): EnvironmentalRegulationComplianceRecord
    }
