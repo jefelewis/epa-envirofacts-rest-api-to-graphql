@@ -1,7 +1,34 @@
 // GraphQL: TypeDefs
 const TYPEDEFS = `
   type Query {
+    getToxicReleaseInventoryByChemical(chemical: String): Chemical
+
     getEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String, city: String): EnvironmentalRegulationComplianceRecord
+   }
+
+   type Chemical {
+    CHEMICAL: String
+    CAS_NUMBER: String
+    HEALTH_EFFECTS_TEXT: String
+    CANCER: String
+    BODY_WEIGHT: String
+    CARDIOVASCULAR: String
+    DERMAL: String
+    DEVELOPMENTAL: String
+    ENDOCRINE: String
+    GASTROINTESTINAL: String
+    HEMATOLOGICAL: String
+    HEPATIC: String
+    IMMUNOLOGICAL: String
+    METABOLIC: String
+    MUSCULOSKELETAL: String
+    NEUROLOGICAL: String
+    OCULAR: String
+    OTHER_SYSTEMIC: String
+    RENAL: String
+    REPRODUCTIVE: String
+    RESPIRATORY: String
+    HEALTH_EFFECTS_SOURCE_TEXT: String
    }
 
    type EnvironmentalRegulationComplianceRecord {
