@@ -3,8 +3,8 @@ const TYPEDEFS = `
   type Query {
 
     getToxicReleaseInventoryHealthDescriptions: Chemical
-    getToxicReleaseInventoryByCASNumber(chemical: String): Chemical
-    getToxicReleaseInventoryByChemical(casNumber: String): Chemical
+    getToxicReleaseInventoryByCASNumber(casNumber: String): Chemical
+    getToxicReleaseInventoryByChemical(chemical: String): Chemical
 
     getEnvironmentalRegulationComplianceRecordsByCity(stateAbbreviation: String, city: String): EnvironmentalRegulationComplianceRecord
    }
@@ -68,7 +68,7 @@ const TYPEDEFS = `
     COMPLIANCE_REPORT: String
     PROGRAM: String
     AFS_ID: String
-    PERMIT_TYPE_AFS: "String
+    PERMIT_TYPE_AFS: String
     NAICS_AFS: Int
     SIC_AFS: Int
     DAYS_SINCE_LAST_INSP_AFS: Int
