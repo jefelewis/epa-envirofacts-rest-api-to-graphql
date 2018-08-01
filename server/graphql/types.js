@@ -1,11 +1,16 @@
+// Imports: GraphQL
+import { gql } from 'apollo-server-express';
+
+
 // GraphQL: TypeDefs
-const TYPEDEFS = `
+const TYPEDEFS = gql`
   type Query {
 
     getToxicReleaseInventoryHealthDescriptions: Chemical
     getAllChemicals: [Chemical]
     getToxicReleaseInventoryByCASNumber(casNumber: String): [Chemical]
     getToxicReleaseInventoryByChemical(chemical: String): [Chemical]
+    getToxicReleaseInventoryFacilityContactsByState: [Chemical]
 
     getNumberOfAllToxicReleaseInventoryFacilities: ToxicReleaseInventoryFacility
     getNumberOfAllToxicReleaseInventoryFacilitiesByState(stateAbbreviation: String): ToxicReleaseInventoryFacility
@@ -318,10 +323,9 @@ const TYPEDEFS = `
     UV_ALERT: [Int]
   }
 
-
-
-
-
+  type PCSPermitFacility {
+    field: String
+  }
 `;
 
 
